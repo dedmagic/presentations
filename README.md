@@ -1,3 +1,2 @@
-# presentation
-
-[GitHub](github/index.html "GitHub")
+# Список презентаций
+* [GitHub](github/index.html "GitHub")
