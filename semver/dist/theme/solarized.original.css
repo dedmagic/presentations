@@ -22,10 +22,10 @@ html * {
   --r-main-color: #657b83;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: Quicksand, sans-serif;
+  --r-heading-font: League Gothic, Impact, sans-serif;
   --r-heading-color: #586e75;
   --r-heading-line-height: 1.2;
-  /* --r-heading-letter-spacing: -0.08em; */
+  --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
   --r-heading-text-shadow: none;
   --r-heading-font-weight: normal;
