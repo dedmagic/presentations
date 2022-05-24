@@ -1,78 +1,321 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>SemVer</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Инженерные практики</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/solarized.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        p,
+        ul {
+            text-align: left;
+            font-size: 2rem;
+        }
+    </style>
+</head>
 
-        <link rel="stylesheet" href="dist/reset.css">
-        <link rel="stylesheet" href="dist/reveal.css">
-        <link rel="stylesheet" href="dist/theme/solarized.css">
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section title="Титульник">
+                <h2>Инженерные практики</h2>
+                <hr />
+                <h4>Школа Тимлида, 2022</h4>
+            </section>
+            <section title="Определение">
+                <h3>Что это?</h3>
+                <hr />
+                <p style="font-size: 3rem;">Под инженерными практиками понимается проверенный временем набор технических
+                    решений, связанных непосредственно с разработкой программного продукта</p>
+            </section>
+            <section title="Часть 1. Краткое описание инженерных практик">
+                <section title="Часть 1. Титульник">
+                    <h4>Часть 1. Краткое описание инженерных практик</h4>
+                    <hr />
+                    <p>Порядок описания: хронологически относительно пайплайна производства кода</p>
+                    <img src="img/pipeline.jpg">
+                </section>
+                <section title="1. Requirement review">
+                    <h4>1. Requirement review (ревью ТЗ)</h4>
+                    <hr />
+                    <p><strong>Requirement review</strong> - ревью постановок (ТЗ). Написанные аналитикой постановки
+                        совместно отсматриваются тремя сторонами:</p>
+                    <ul>
+                        <li>разработкой, с т.з. как это будет разрабатываться</li>
+                        <li>тестированием, с т.з. как это будет тестироваться</li>
+                        <li>аналитикой (аудит)</li>
+                    </ul>
+                    <p><strong>Цель:</strong> нахождение неточностей, недоговорённостей, неоднозначностей и
+                        т.д., т.е. приведение постановок к максимально точному, полному и конкретному виду.</p>
+                </section>
+                <section title="2. Design review">
+                    <h4>2. Design review</h4>
+                    <hr />
+                    <p><strong>Design review</strong> - проектирование ПО. Коллективная работа, проводится ДО написания
+                        кода.</p>
+                    <p>Возможно в форме, аналогичной код-ревью: через пулл-реквесты с комментированием и аппрувами.</p>
+                    <p>Для оформления ADR (Architecture Decision Record) хорошо подходят языки Markdown (документы с
+                        форматированнием в plain-тексте) и PlantUML (UML и ER-диаграммы в plain-тексте).</p>
+                    <p><strong>Цель:</strong> обеспечить грамотное проектирование структуры БД и дизайна классов,
+                        соответствие принятых проектных решений текущей архитектуре.</p>
+                </section>
+                <section title="3. Парное программирование">
+                    <h4>3. Парное программирование</h4>
+                    <hr />
 
-        <!-- Theme used for syntax highlighted code -->
-        <link rel="stylesheet" href="plugin/highlight/monokai.css">
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-                    <h2>SemVer</h2>
-                    <hr />
-                    <h3>Семантическое версионирование</h3>
+                    <p>Двое программистов одновременно работают над одной задачей за одним компьютером</p>
+
+                    <p><strong>Цели:</strong></p>
+                    <ul>
+                        <li>ускорение работы</li>
+                        <li>повышение качества кода</li>
+                        <li>передача знаний</li>
+                    </ul>
                 </section>
-                <section>
-                    <h3>Части номера версии пакета</h3>
+                <section title="4. Работа с техническим долгом">
+                    <h4>4. Работа с техническим долгом</h4>
                     <hr />
-                    <h1>2.11.6</h1>
-                    <h4>major.minor.patch</h4>
+
+                    Технический долг:
+                    - код, не соответствующий командным критериям качества
+                    - сознательно применённые некачественные технические решения ("костыли")
+
+                    Для обеспечения возможности возврата техдолга он должен быть зафиксирован и измерен.
+                    - WI на возврат техдолга
+                    - пометки в коде (через TODO)
+
+                    <strong>Цели:</strong>
+                    - избежать или замедлить загнивание кода
+                    - сохранить приемлемую скорость развития и сопровождения кода
+                    - повысить удовлетворённость разработчиков
                 </section>
-                <section>
-                    <h3>Patch</h3>
+                <section title="5. CI/CD (CI/CD/CD)">
+                    <h4>5. CI/CD (CI/CD/CD)</h4>
                     <hr />
-                    <h1>2.11.<u>6</u></h1>
-                    <p>Изменения, не затрагивающие API пакета, например, багфиксы.<br />Не ломают обратную совместимость</p>
+
+                    - <strong>CI</strong> (Continuous Integration) - автоматические сборка системы после всех изменений
+                    кода, прогон
+                    тестов и проверок статическими анализаторами
+                    - <strong>CD</strong> (Continuous Delivery) - автоматическая доставка новых версий системы
+                    конечным пользователям
+                    - <strong>CD</strong> (Continuous Deployment) - автоматическая публикация новых
+                    версий в тестовых и промышленых
+                    средах
+
+                    <strong>Цель:</strong> автоматизация пайплайна производства кода
                 </section>
-                <section>
-                    <h3>Minor</h3>
+                <section title="6. Статический анализ кода">
+                    <h4>6. Статический анализ кода</h4>
                     <hr />
-                    <h1>2.<u>11</u>.6</h1>
-                    <p>Изменения, добавляющие в пакет новые функции, но не затрагивающие текущее API.<br />Не ломают обратную совместимость</p>
+
+                    <strong>Статический анализ кода</strong> - автоматическая проверка кодовой базы специальными
+                    анализаторами на
+                    предмет наличия code smells, уязвимостей, потенциальных багов.
+
+                    Примеры: SonarQube, сообщения в IDE при компиляции и сборке проекта, ESLint и другие
+                    линтеры.
+
+                    <strong>Цель:</strong> - указать на потенциальные проблемы в коде.
                 </section>
-                <section>
-                    <h3>Major</h3>
+                <section title="7. Автоматизированное тестирование">
+                    <h4>7. Автоматизированное тестирование</h4>
                     <hr />
-                    <h1><u>2</u>.11.6</h1>
-                    <p>Изменения в API, ломающие обратную совместимость (например, удаление каких-то функций)</p>
+
+                    - модульные тесты (юнит-тесты) - разработка
+                    - end2end-тесты - тестирование + аналитика
+                    - интеграционные тесты - разработка + тестирование и аналитика
+
+                    <strong>Цели:</strong>
+                    - уменьшение количества багов
+                    - повышение качества кода
                 </section>
-                <section>
-                    <h3>Пример</h3>
+                <section title="8. Код-ревью">
+                    <h4>8. Код-ревью</h4>
                     <hr />
-                    <img src="img/dependencies.png" />
+
+                    Код-ревью - изучение кода другими разработчиками
+
+                    <strong>Цели:</strong>
+                    - повышение качества кода
+                    - контроль правильности проектных решений, соответствия этих решений текущей архитектуре
+                    - передача знаний
+                    - формирование коллективной ответственности
                 </section>
-                <section>
-                    <h3>Спецификация</h3>
+                <section title="9. Владение кодом (code ownership)">
+                    <h4>9. Владение кодом (code ownership)</h4>
                     <hr />
-                    <h3><a href="https://semver.org/lang/ru/" target="_blank">semver.org</a></h3>
+
+                    Владение кодом - назначение ответственных разработчиков (овнера и дублёра) для каждого участка
+                    кодовой базы.
+
+                    <strong>Цели:</strong>
+                    - повышение качества и скорости выполнения работ
+                    - нивелирование bus-фактора
                 </section>
-            </div>
+            </section>
+            <section title="Часть 2. Приоритет внедрения инженерных практик">
+                <section title="Формула вычисления приоритета">
+                    <h4>Приоритет внедрения инженерных практик</h4>
+                    <hr />
+
+                    Приоритет вычисляется по простой формуле: `целесообразность внедрения = наносимая польза / затраты
+                    ресурсов`.
+                </section>
+                <section title="0. CI/CD">
+                    <h4>0. CI/CD</h4>
+                    <hr />
+
+                    Без внедреных CI/CD невозможны многие другие инженерные практики
+                </section>
+                <section title="1. Код-ревью">
+                    <h4>1. Код-ревью</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> огромная
+                    - код становится единообразным
+                    - ощутимый профессиональный рост членов команды
+                    - прекрасный инструмент для выработки критериев качества кода
+                    - инструмент шаринга знаний
+
+                    <strong>Затраты:</strong> первое время большие, со временем падают до средних или даже
+                    небольших
+                </section>
+                <section title="2. Статический анализ кода">
+                    <h4>2. Статический анализ кода</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> она есть :)
+
+                    <strong>Затраты:</strong> ничтожны
+                </section>
+                <section title="3. Интеграционное тестирование">
+                    <h4>3. Интеграционное тестирование</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> единственный автоматический вариант защиты от регрессий
+
+                    <strong>Затраты:</strong> первое время большие, со временем падают до средних или средних+
+                </section>
+                <section title="4. Design review">
+                    <h4>4. Design review</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> большая - неправильные проектные решения обходятся в долгосрочной
+                    перспективе в
+                    десятки и сотни человекочасов
+
+                    <strong>Затраты:</strong> большие
+                </section>
+                <section title="5. Работа с техническим долгом">
+                    <h4>5. Работа с техническим долгом</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> большая
+
+                    <strong>Затраты:</strong> большие
+                </section>
+                <section title="6. Юнит-тестирование">
+                    <h4>6. Юнит-тестирование</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> средняя
+
+                    Кейсы:
+                    - действительно сложная логика
+                    - джунам: понимание правильного дизайна кода
+                    - гуанокодерам: приучание к правильному через боль
+
+                    <strong>Затраты:</strong> средние
+                </section>
+                <section title="7. Владение кодом (code ownership)">
+                    <h4>7. Владение кодом (code ownership)</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> средняя
+
+                    <strong>Затраты:</strong> средние
+                </section>
+                <section title="8. Requirement review (ревью ТЗ)">
+                    <h4>8. Requirement review (ревью ТЗ)</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> средняя
+
+                    <strong>Затраты:</strong> средние
+                </section>
+                <section title="9. Парное программирование">
+                    <h4>9. Парное программирование</h4>
+                    <hr />
+
+                    <strong>Польза:</strong> средняя
+
+                    Кейсы, когда парное программирование может быть полезно:
+                    - развитие джунов (т.е. как элемент наставничества)
+                    - онбоардинг
+                    - кодирование каких-то краеугольных штук, которые будут аффектить всё остальное (ну или
+                    многое)
+                    - первоначальная реализация, которая потом будет использоваться в качестве образца(пример:
+                    первые страницы на WebAPI)
+                    - если разработчик "застрял" и не может решить задачу / починить багу
+
+                    <strong>Затраты:</strong> большие
+                </section>
+            </section>
+            <section title="Дополнительные материалы">
+                <h4>Дополнительные материалы</h4>
+                <hr />
+
+                - [Выступление по
+                код-ревью](https://fs-teams.parmalogica.ru/conf/Expert%20Club/%23expert_club%20%D0%9A%D0%BE%D0%B4-%D1%80%D0%B5%D0%B2%D1%8C%D1%8E%20%D0%B8%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%BA%D0%BE%D0%B4%D0%B0%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B5%20%D0%90%D0%A1%D0%A3%20%D0%93%D0%A4.mp4
+                "Код-ревью")
+                - [Выступление по
+                дизайн-ревью](https://fs-teams.parmalogica.ru/conf/Expert%20Club/%23expert_club%20%D0%A1%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%20Design%20Review_18.06.2020.mp4
+                "Дизайн-ревью)
+                - [Выступление по
+                техдолгу](https://fs-teams.parmalogica.ru/Conf/Expert%20Club/IT%20%D0%BA%D1%83%D1%85%D0%BD%D1%8F-20210712_160218-%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D1%8C%20%D1%81%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B8%D1%8F_12.07.2021.mp4
+                "Техдолг")
+            </section>
+            <section title="Home work">
+                <h4>Домашнее задание:</h4>
+                <ol>
+                    <li>1. Составить список инженерных практик, используемых на проекте, с кратким описанием текущего
+                        состояния, а также с плюсами и минусами</li>
+                    <li>2. Подготовить предложения по улучшению этих инженерных практик</li>
+                    <li>3. (*) Какие инженерные практики необходимо внедрить, а также план внедрения (роадмап)</li>
+                </ol>
+                // UNDONE: Добавить про формат
+            </section>
+            <section title="The End">
+                <h1>Вопросы?</h1>
+            </section>
         </div>
+    </div>
 
-        <script src="dist/reveal.js"></script>
-        <script src="plugin/notes/notes.js"></script>
-        <script src="plugin/markdown/markdown.js"></script>
-        <script src="plugin/highlight/highlight.js"></script>
-        <script>
-            // More info about initialization & config:
-            // - https://revealjs.com/initialization/
-            // - https://revealjs.com/config/
-            Reveal.initialize({
-                hash: true,
+    <script src="dist/reveal.js" />
+    <script src="plugin/notes/notes.js" />
+    <script src="plugin/markdown/markdown.js" />
+    <script src="plugin/highlight/highlight.js" />
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
 
-                // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
-                transition: 'convex'
-            });
-        </script>
-    </body>
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+            transition: 'convex'
+        });
+    </script>
+</body>
+
 </html>
